@@ -1,25 +1,22 @@
 from fastapi import FastAPI, Request
-from fastapi.middleware.cors import CORSMiddleware
-from model import generate_response
+from fastapi.responses import FileResponse
+from fastapi.staticfiles import StaticFiles
+import os
 
 app = FastAPI()
 
-# Для фронтенда
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],  # или конкретный URL
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
+# Подключаем статику из React
+app.mount("/", StaticFiles(directory="static", html=True), name="static")
 
+# Обработка корневого маршрута
 @app.get("/")
 async def root():
-    return {"message": "Hello World"}
+    return FileResponse("static/index.html")
 
+# Маршрут для чата
 @app.post("/chat")
-async def chat(req: Request):
-    data = await req.json()
-    user_message = data.get("message", "")
-    response = generate_response(user_message)
-    return {"response": response}
-
+async def chat(request: Request):
+    data = await request.json()
+    message = data.get("message", "")
+    # Подключение модели (позже заменим)
+    return {"response": f"Вы сказали: {message}"}
