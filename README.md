@@ -8,32 +8,6 @@
 - Генерация умных подсказок и советов игроку
 - Веб-интерфейс в стиле ChatGPT, можно отправлять фото/звук/текст
 
-## Быстрый старт
-
-### Backend
-
-```bash
-cd backend
-pip install -r requirements.txt
-uvicorn main:app --reload
-```
-
-### Frontend
-
-```bash
-cd frontend
-npm install
-npm start
-```
-
-- Откройте [http://localhost:3000](http://localhost:3000)
-- Backend по умолчанию слушает на порту 8000
-
----
-
-**Архитектура:**  
-- Python (FastAPI, PyTorch, Transformers)  
-- React (чат-интерфейс)
 
 ---
 
