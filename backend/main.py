@@ -20,3 +20,13 @@ async def chat(request: Request):
     message = data.get("message", "")
     # Подключение модели (позже заменим)
     return {"response": f"Вы сказали: {message}"}
+import requests
+
+@app.post("/ask")
+def ask_llm(prompt: str, model: str = "llama3"):
+    response = requests.post(
+        f"http://localhost:11434/api/generate",
+        json={"model": model, "prompt": prompt, "stream": False},
+    )
+    data = response.json()
+    return {"response": data.get("response", "")}
