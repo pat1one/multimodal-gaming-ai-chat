@@ -10,4 +10,17 @@ function App() {
 }
 
 export default App
+import ImageUpload from './ImageUpload';
+
+// ...
+
+<ImageUpload
+  onResponse={(imageResponse) =>
+    setMessages((prev) => [
+      ...prev,
+      { role: "user", content: "Отправлено изображение." },
+      { role: "assistant", content: imageResponse },
+    ])
+  }
+/>
 
