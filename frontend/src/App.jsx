@@ -6,6 +6,16 @@ function App() {
       <h1>GPT-2 Chat</h1>
       <Chat />
     </div>
+    import VoiceInput from './VoiceInput'; 
+  
+<VoiceInput
+  onResult={(voiceText) => {
+    setInput(voiceText);
+    setMessages(prev => [...prev, { role: 'user', content: voiceText }]);
+    sendMessage(voiceText);
+  }}
+/>
+
   )
 }
 
@@ -23,4 +33,6 @@ import ImageUpload from './ImageUpload';
     ])
   }
 />
+
+
 
